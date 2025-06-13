@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  text-align: center;
+  padding: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+#cards {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.card {
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
