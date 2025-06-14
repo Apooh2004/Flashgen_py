@@ -27,16 +27,29 @@ async function uploadPDF() {
     const cardsDiv = document.getElementById("cards");
     cardsDiv.innerHTML = "";
 
-    result.flashcards.forEach((card) => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `<strong>Q:</strong> ${card.question}<br><strong>A:</strong> <span style='display:none;'>${card.answer}</span>`;
-      div.onclick = function () {
-        const answer = this.querySelector("span");
-        answer.style.display = answer.style.display === "none" ? "inline" : "none";
-      };
-      cardsDiv.appendChild(div);
-    });
+result.flashcards.forEach((card) => {
+  const flipContainer = document.createElement("div");
+  flipContainer.className = "flip-card";
+
+  flipContainer.innerHTML = `
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <strong>Q:</strong> ${card.question}
+      </div>
+      <div class="flip-card-back">
+        <strong>A:</strong> ${card.answer}
+      </div>
+    </div>
+  `;
+
+  // Flip on click
+  flipContainer.addEventListener("click", () => {
+    flipContainer.classList.toggle("flipped");
+  });
+
+  cardsDiv.appendChild(flipContainer);
+});
+
 
   } catch (error) {
     console.error("Error uploading or parsing PDF:", error);
